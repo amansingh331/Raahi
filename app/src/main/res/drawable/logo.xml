@@ -1,0 +1,32 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+
+    <!-- Outer Pin -->
+    <path
+        android:fillColor="#FF9933"
+        android:pathData="M64,12
+            C44,12 28,28 28,48
+            C28,74 64,116 64,116
+            C64,116 100,74 100,48
+            C100,28 84,12 64,12Z"/>
+
+    <!-- Inner Circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M64,34
+            A14,14 0 1,1 63.9,34Z"/>
+
+    <!-- Journey Path -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M22,104
+            C36,92 52,90 64,98
+            C78,108 94,104 108,90
+            L108,96
+            C92,110 74,114 60,106
+            C46,98 34,100 22,110Z"/>
+
+</vector>
