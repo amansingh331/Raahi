@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -40,9 +42,14 @@ import com.example.raahi.ui.theme.*
 import kotlinx.coroutines.launch
 
 @Composable
-//@Preview(showSystemUi = true)
-fun SignUpScreen(navController: NavHostController) {
+@Preview(showSystemUi = true)
+fun SignUpScreen(navController: NavHostController = rememberNavController()) {
 
+//
+//fun SignUpScreen(navController: NavHostController) {
+
+    val configuration = LocalConfiguration.current
+    val cardMinHeight = configuration.screenHeightDp.dp - 180.dp
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -66,7 +73,7 @@ fun SignUpScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(60.dp))
 
             Image(
-                painter = painterResource(R.drawable.google),
+                painter = painterResource(R.drawable.logo),
                 contentDescription = "Logo",
                 modifier = Modifier
                     .size(90.dp)
@@ -74,8 +81,10 @@ fun SignUpScreen(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(30.dp))
             Card(
-                modifier = Modifier.fillMaxSize(),
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = cardMinHeight),
+                shape = RoundedCornerShape(
                     topStart = 35.dp,
                     topEnd = 35.dp
                 ),

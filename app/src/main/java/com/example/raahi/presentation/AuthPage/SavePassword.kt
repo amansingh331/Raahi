@@ -27,6 +27,7 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -42,8 +43,12 @@ import com.example.raahi.ui.theme.TextPrimary
 
 @Composable
 //@Preview(showSystemUi = true)
+//fun SavePasswordScreen(navController: NavHostController = rememberNavController()) {
+
 fun SavePasswordScreen(navController: NavHostController) {
 
+    val configuration = LocalConfiguration.current
+    val cardMinHeight = configuration.screenHeightDp.dp - 180.dp
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -78,7 +83,9 @@ fun SavePasswordScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(30.dp))
             Card(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = cardMinHeight),
                 shape = RoundedCornerShape(
                     topStart = 35.dp,
                     topEnd = 35.dp
@@ -153,7 +160,9 @@ fun SavePasswordScreen(navController: NavHostController) {
                     PrimaryButton(
                         text = "Save Password",
                         isLoading = loading,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(55.dp),
                         onClick = {
                             if (loading) return@PrimaryButton
                             focusManager.clearFocus()

@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -25,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.raahi.R
 import com.example.raahi.component.Button.PrimaryButton
 import com.example.raahi.component.TextField.AuthTextField
@@ -36,8 +38,12 @@ import kotlinx.coroutines.launch
 
 @Composable
 //@Preview(showSystemUi = true)
-fun ForgotPasswordScreen(navController: NavHostController) {
+//fun ForgotPasswordScreen(navController: NavHostController = rememberNavController()) {
 
+
+fun ForgotPasswordScreen(navController: NavHostController) {
+    val configuration = LocalConfiguration.current
+    val cardMinHeight = configuration.screenHeightDp.dp - 180.dp
     var email by remember {
         mutableStateOf("")
     }
@@ -48,12 +54,7 @@ fun ForgotPasswordScreen(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .background(
-                Brush.verticalGradient(
-                    listOf(
-                        BackgroundTop,
-                        BackgroundBottom
-                    )
-                )
+                BackgroundTop
             )
     ) {
 
@@ -64,23 +65,18 @@ fun ForgotPasswordScreen(navController: NavHostController) {
         ) {
             Spacer(modifier = Modifier.height(60.dp))
             Image(
-                painter = painterResource(R.drawable.google),
+                painter = painterResource(R.drawable.logo),
                 contentDescription = null,
                 modifier = Modifier
                     .size(90.dp)
                     .align(Alignment.CenterHorizontally)
             )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                text = "Raahi",
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextPrimary
-            )
+
             Spacer(modifier = Modifier.height(30.dp))
             Card(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = cardMinHeight),
                 colors = CardDefaults.cardColors(
                     containerColor = Backgroundcard
                 ),
@@ -96,12 +92,15 @@ fun ForgotPasswordScreen(navController: NavHostController) {
                     Text(
                         text = "Forgot Password",
                         style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = ForgetPasswordHeadingText,
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Enter your email address and we'll send you an OTP.",
-                        color = TextSecondary
+                        color = TextPrimary,
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
                     )
                     Spacer(modifier = Modifier.height(28.dp))
                     if (error.isNotEmpty()) {
@@ -165,11 +164,11 @@ fun ForgotPasswordScreen(navController: NavHostController) {
                     ) {
                         Text(
                             text = "Remember your password? ",
-                            color = TextSecondary
+                            color = TextPrimary
                         )
                         Text(
                             text = "Login",
-                            color = Primary,
+                            color = TextSecondary,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.clickable {
                                 navController.popBackStack()

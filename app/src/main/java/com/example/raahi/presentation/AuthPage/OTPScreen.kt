@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,9 +39,11 @@ import com.example.raahi.ui.theme.*
 import kotlinx.coroutines.launch
 
 @Composable
-//@Preview(showSystemUi = true)
-fun OtpScreen(navController: NavHostController) {
+@Preview(showSystemUi = true)
+fun OtpScreen(navController: NavHostController= rememberNavController()) {
 
+    val configuration = LocalConfiguration.current
+    val cardMinHeight = configuration.screenHeightDp.dp - 180.dp
     var otp by remember {
         mutableStateOf("")
     }
@@ -97,7 +100,9 @@ fun OtpScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(30.dp))
             Card(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = cardMinHeight),
                 shape = RoundedCornerShape(
                     topStart = 35.dp,
                     topEnd = 35.dp

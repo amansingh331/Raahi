@@ -50,3 +50,5 @@ val ProgressIndicatorColor = Color.White
 val TextFieldelableColor = Color.White
 val IconThemeColor = Color(0xFFFF9933)
 val OTPHeadingText = Color(0xFFFF9933)
+val ForgetPasswordHeadingText = Color(0xFFFF9933)
+val SplashBackground = Color(0xFF112E42)

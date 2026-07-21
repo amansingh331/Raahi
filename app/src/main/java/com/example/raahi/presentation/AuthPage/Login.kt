@@ -1,9 +1,5 @@
 package com.example.raahi.presentation.AuthPage
 
-import com.example.raahi.component.Button.PrimaryButton
-import com.example.raahi.component.DividerWithText.DividerWithText
-import com.example.raahi.component.SocialButton.SocialButton
-import com.example.raahi.component.TextField.AuthTextField
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,51 +17,55 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-
 import com.example.raahi.R
+import com.example.raahi.component.Button.PrimaryButton
+import com.example.raahi.component.DividerWithText.DividerWithText
+import com.example.raahi.component.SocialButton.SocialButton
+import com.example.raahi.component.TextField.AuthTextField
 import com.example.raahi.dataOpp.AuthResult
 import com.example.raahi.dataOpp.AuthService
 import com.example.raahi.navigation.Screen
 import com.example.raahi.ui.theme.*
 import kotlinx.coroutines.launch
 
-@Composable
 @Preview(showSystemUi = true)
-fun LoginScreen(navController: NavHostController = rememberNavController()) {
-
-//fun LoginScreen(navController: NavHostController) {
+@Composable
+fun LoginScreen(
+    navController: NavHostController = rememberNavController()
+) {
+    val configuration = LocalConfiguration.current
+    val cardMinHeight = configuration.screenHeightDp.dp - 180.dp
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
+
     var loading by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf("") }
+
+    val scope = rememberCoroutineScope()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                BackgroundTop
-            )
+            .background(BackgroundTop)
     ) {
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
+
             Spacer(modifier = Modifier.height(60.dp))
+
             Image(
                 painter = painterResource(R.drawable.logo),
                 contentDescription = null,
@@ -75,8 +75,11 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
             )
 
             Spacer(modifier = Modifier.height(30.dp))
+
             Card(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = cardMinHeight),
                 shape = RoundedCornerShape(
                     topStart = 35.dp,
                     topEnd = 35.dp
@@ -85,25 +88,33 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                     containerColor = Backgroundcard
                 )
             ) {
+
                 Column(
                     modifier = Modifier
+                        .fillMaxWidth()
                         .padding(24.dp)
                 ) {
+
                     Spacer(modifier = Modifier.height(12.dp))
+
                     Text(
                         text = "Welcome Back",
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         color = LoginHeadingText,
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
+
                     Spacer(modifier = Modifier.height(8.dp))
+
                     Text(
                         text = "Login to continue exploring amazing places.",
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        color = TextPrimary
+                        color = TextPrimary,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
+
                     Spacer(modifier = Modifier.height(28.dp))
+
                     if (error.isNotEmpty()) {
                         Text(
                             text = error,
@@ -115,6 +126,7 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
+
                     AuthTextField(
                         value = email,
                         onValueChange = {
@@ -141,11 +153,14 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                             passwordVisible = !passwordVisible
                         }
                     )
+
                     Spacer(modifier = Modifier.height(10.dp))
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.End
                     ) {
+
                         Text(
                             text = "Forgot Password?",
                             color = TextSecondary,
@@ -155,6 +170,7 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                             }
                         )
                     }
+
                     Spacer(modifier = Modifier.height(24.dp))
                     PrimaryButton(
                         text = if (loading) "Logging In..." else "Login",
@@ -163,20 +179,29 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                             .height(55.dp),
                         isLoading = loading,
                         onClick = {
+
                             if (loading) return@PrimaryButton
+
                             scope.launch {
+
                                 loading = true
-                                error=""
-                                when(val result = AuthService.login(email, password)){
+                                error = ""
+
+                                when (val result = AuthService.login(email, password)) {
+
                                     is AuthResult.Success -> {
+
                                         loading = false
+
                                         navController.navigate(Screen.Home.route) {
                                             popUpTo(Screen.Login.route) {
                                                 inclusive = true
                                             }
                                         }
                                     }
+
                                     is AuthResult.Error -> {
+
                                         loading = false
                                         error = result.message
                                     }
@@ -186,45 +211,52 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                     )
 
                     Spacer(modifier = Modifier.height(30.dp))
+
                     DividerWithText(
                         text = "Or Sign In With"
                     )
+
                     Spacer(modifier = Modifier.height(24.dp))
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
+
                         SocialButton(
                             painter = painterResource(R.drawable.google),
                             contentDescription = "Google",
-                            onClick = {
-                            }
+                            onClick = {}
                         )
 
                         SocialButton(
                             painter = painterResource(R.drawable.apple),
                             contentDescription = "Apple",
-                            onClick = {
-                            }
+                            onClick = {}
                         )
+
                         SocialButton(
                             painter = painterResource(R.drawable.twitter),
                             contentDescription = "Twitter",
-                            onClick = {
-                            }
+                            onClick = {}
                         )
                     }
+
                     Spacer(modifier = Modifier.height(30.dp))
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+
                         Text(
                             text = "Don't have an account?",
                             color = TextPrimary
                         )
+
                         Spacer(modifier = Modifier.width(6.dp))
+
                         Text(
                             text = "Sign Up",
                             color = TextSecondary,
@@ -234,10 +266,10 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                             }
                         )
                     }
-                    Spacer(modifier = Modifier.height(24.dp))
+
+                    Spacer(modifier = Modifier.height(30.dp))
                 }
             }
         }
     }
-
 }
