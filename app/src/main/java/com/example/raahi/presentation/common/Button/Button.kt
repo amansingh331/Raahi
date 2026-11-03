@@ -1,4 +1,4 @@
-package com.example.raahi.component.Button
+package com.example.raahi.presentation.common.Button
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp

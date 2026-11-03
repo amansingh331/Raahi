@@ -13,6 +13,7 @@ object AuthService {
     private val users = mutableListOf<User>()
     private var loggedInUser: User? = null
     private var pendingVerificationEmail: String? = null
+
     suspend fun login(email: String, password: String): AuthResult {
         delay(3000)
         val user = users.find { it.email == email } ?: return AuthResult.Error("User not found")

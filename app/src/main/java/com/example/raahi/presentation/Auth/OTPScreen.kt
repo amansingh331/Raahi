@@ -1,4 +1,4 @@
-package com.example.raahi.presentation.AuthPage
+package com.example.raahi.presentation.Auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
@@ -27,11 +26,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.raahi.R
-import com.example.raahi.component.Button.PrimaryButton
+import com.example.raahi.presentation.common.Button.PrimaryButton
 import com.example.raahi.dataOpp.AuthResult
 import com.example.raahi.dataOpp.AuthService
 import com.example.raahi.navigation.Screen

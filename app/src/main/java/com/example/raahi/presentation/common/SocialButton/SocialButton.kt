@@ -1,4 +1,4 @@
-package com.example.raahi.component.SocialButton
+package com.example.raahi.presentation.common.SocialButton
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

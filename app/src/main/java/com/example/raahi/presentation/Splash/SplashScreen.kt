@@ -1,4 +1,4 @@
-package com.example.raahi.presentation.SplashScreen
+package com.example.raahi.presentation.Splash
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing

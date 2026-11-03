@@ -1,4 +1,4 @@
-package com.example.raahi.component.DividerWithText
+package com.example.raahi.presentation.common.DividerWithText
 
 
 import androidx.compose.foundation.layout.Arrangement

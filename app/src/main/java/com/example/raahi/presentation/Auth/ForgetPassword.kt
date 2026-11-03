@@ -1,6 +1,7 @@
-package com.example.raahi.presentation.AuthPage
+package com.example.raahi.presentation.Auth
 
 
+import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -24,12 +24,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.raahi.R
-import com.example.raahi.component.Button.PrimaryButton
-import com.example.raahi.component.TextField.AuthTextField
+import com.example.raahi.presentation.common.Button.PrimaryButton
+import com.example.raahi.presentation.common.TextField.AuthTextField
 import com.example.raahi.dataOpp.AuthResult
 import com.example.raahi.dataOpp.AuthService
 import com.example.raahi.navigation.Screen
@@ -37,11 +36,11 @@ import com.example.raahi.ui.theme.*
 import kotlinx.coroutines.launch
 
 @Composable
-//@Preview(showSystemUi = true)
-//fun ForgotPasswordScreen(navController: NavHostController = rememberNavController()) {
+@Preview(showSystemUi = true)
+fun ForgotPasswordScreen(navController: NavHostController = rememberNavController()) {
 
 
-fun ForgotPasswordScreen(navController: NavHostController) {
+//fun ForgotPasswordScreen(navController: NavHostController) {
     val configuration = LocalConfiguration.current
     val cardMinHeight = configuration.screenHeightDp.dp - 180.dp
     var email by remember {
@@ -137,7 +136,7 @@ fun ForgotPasswordScreen(navController: NavHostController) {
                                 return@PrimaryButton
                             }
 
-                            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                                 error = "Please enter a valid email address"
                                 return@PrimaryButton
                             }

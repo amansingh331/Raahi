@@ -1,4 +1,4 @@
-package com.example.raahi.presentation.AuthPage
+package com.example.raahi.presentation.Auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,27 +12,22 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.raahi.component.Button.PrimaryButton
-import com.example.raahi.component.TextField.AuthTextField
+import com.example.raahi.presentation.common.Button.PrimaryButton
+import com.example.raahi.presentation.common.TextField.AuthTextField
 import com.example.raahi.navigation.Screen
-import com.example.raahi.ui.theme.BackgroundBottom
 import com.example.raahi.ui.theme.BackgroundTop
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
 import com.example.raahi.R
 import com.example.raahi.dataOpp.AuthResult
 import com.example.raahi.dataOpp.AuthService

@@ -4,13 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.raahi.presentation.AuthPage.ForgotPasswordScreen
-import com.example.raahi.presentation.AuthPage.LoginScreen
-import com.example.raahi.presentation.AuthPage.OtpScreen
-import com.example.raahi.presentation.AuthPage.SavePasswordScreen
-import com.example.raahi.presentation.AuthPage.SignUpScreen
-import com.example.raahi.presentation.HomeScreen.HomeScreen
-import com.example.raahi.presentation.SplashScreen.SplashScreen
+import com.example.raahi.presentation.Auth.ForgotPasswordScreen
+import com.example.raahi.presentation.Auth.LoginScreen
+import com.example.raahi.presentation.Auth.OtpScreen
+import com.example.raahi.presentation.Auth.SavePasswordScreen
+import com.example.raahi.presentation.Auth.SignUpScreen
+import com.example.raahi.presentation.Home.HomeScreen
+import com.example.raahi.presentation.Splash.SplashScreen
 
 @Composable
 fun AppNavigation() {
